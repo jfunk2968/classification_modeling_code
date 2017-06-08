@@ -1,1 +1,1 @@
-# R code snippets for classfication with general linear models
+# R code snippets for classfication problems
