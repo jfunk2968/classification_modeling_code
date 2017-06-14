@@ -90,6 +90,8 @@ for (i in 1:length(model.boot$t0))  {
 # define function to bootstrap CV GINI estimates
 boot.glm.cv <- function(df, indices) {
   df <- df[indices,] # select obs. in bootstrap sample  
+  setpb(pb, rep_count)
+  rep_count <<- rep_count + 1
   mod <- glm(income50k ~ 
                age
              + sex
@@ -104,7 +106,7 @@ boot.glm.cv <- function(df, indices) {
 
 
 # run CV bootstrap
-system.time(cv.boot <- boot(df, boot.glm.cv, 100, parallel="multicore", ncpus=7))
+system.time(cv.boot <- boot(train, boot.glm.cv, 10, parallel="multicore", ncpus=7))
 plot(cv.boot, index=1)
 
 
