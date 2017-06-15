@@ -30,7 +30,9 @@ m1 <- glm(income50k ~
 
 # score model
 train$mfinal_score <- predict(m1, train, type="response")
+train$mfinal_score_log <- predict(m1, train)
 test$mfinal_score <- predict(m1, test, type="response")
+test$mfinal_score_log <- predict(m1, test)
 
 
 # training data rank ordering
